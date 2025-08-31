@@ -21,7 +21,12 @@ jobs:
           node-version: '18'
       - name: Run a Hello World Action
         uses: actions/hello-world-docker-action@v1
-      - name: Install dependencies and run tests
-        run: |
-          npm install
-          npm test
+        
+      - name: Install dependencies
+        run: npm install
+
+      - name: Set executable permissions for Mocha
+        run: chmod +x ./node_modules/.bin/mocha
+
+      - name: Run tests
+        run: npm test
